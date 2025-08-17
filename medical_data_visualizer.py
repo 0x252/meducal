@@ -34,7 +34,7 @@ def draw_cat_plot():
     # 7
     # https://seaborn.pydata.org/generated/seaborn.catplot.html
     catplot = sns.catplot(data=df_cat, x='variable', hue='value', col='cardio', kind='count')
-
+    catplot.set_ylabels("total")
 
     # 8
     fig = catplot.fig
@@ -48,21 +48,23 @@ def draw_cat_plot():
 # 10
 def draw_heat_map():
     # 11
-    df_heat = None
+    global df_heat
+    df_heat = df.loc[(df['ap_lo'] <= df['ap_hi'])  & (df['height'] >= df['height'].quantile(0.025))  & (df['height']>97.5) &(df['weight']<2.5) &(df['weight']>97.5)]
 
     # 12
-    corr = None
+    corr = df.corr()
 
-    # 13
-    mask = None
+    # 13 by chatgpt because I not clear what there need. mask not tested
+    mask = np.triu(np.ones_like(corr, dtype=bool))
+    
 
 
 
     # 14
-    fig, ax = None
+    fig, ax = plt.subplots(figsize=(12, 12))
 
     # 15
-
+    sns.heatmap(corr, mask=mask, cmap="coolwarm", annot=True, fmt=".1f", square=True, center=0)
 
 
     # 16
