@@ -23,7 +23,7 @@ def draw_cat_plot():
     # 5
     global df
     # DataFrame.melt(id_vars=None, value_vars=None, var_name=None, value_name='value', col_level=None, ignore_index=True)
-    df_cat = df.melt(id_vars=['cardio'], value_vars=['cholesterol', 'gluc', 'smoke', 'alco', 'active', 'overweight'])
+    df_cat = df.melt(id_vars=['cardio'], value_vars=['active','alco','cholesterol','gluc','overweight','smoke'])
 
     #print(df_cat)
     # 6
